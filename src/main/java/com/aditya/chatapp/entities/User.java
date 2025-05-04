@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -23,7 +23,10 @@ public class User {
 	private String password;
 	
 	@Column(name = "is_active")
-	private boolean is_active;
+	private boolean isActive;
+
+	@Column(name = "socket_id")
+	private String socketId;
 
 	public int getId() {
 		return id;
@@ -49,18 +52,18 @@ public class User {
 		this.password = password;
 	}
 	
-	public boolean getIs_active() {
-		return is_active;
+	public boolean getIsActive() {
+		return isActive;
 	}
 
-	public void setIs_active(boolean is_active) {
-		this.is_active = is_active;
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
-	public User(String username, String password, boolean is_active) {
+	public User(String username, String password, boolean isActive) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.is_active = is_active;
+		this.isActive = isActive;
 	}
 }

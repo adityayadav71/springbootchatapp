@@ -20,7 +20,7 @@ public class SecurityConfig {
 		
 		jdbcUserDetailsManager.setUsersByUsernameQuery("select id, username, password, is_active from users where id=?");
 		
-		jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+		jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select user_id, role from user_role_mappings where user_id=?");
 		
 		return jdbcUserDetailsManager;
 	}
@@ -33,7 +33,7 @@ public class SecurityConfig {
 			.requestMatchers(HttpMethod.PUT, "/api/users").hasAnyRole("MANAGER", "ADMIN")
 			.requestMatchers(HttpMethod.PATCH, "/api/users").hasAnyRole("MANAGER", "ADMIN")
 			.requestMatchers(HttpMethod.DELETE, "/api/users").hasRole("ADMIN")
-			.requestMatchers(HttpMethod.GET, "/api/roleMappings").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.GET, "/api/roleMappings").hasRole("USER")
 			.requestMatchers(HttpMethod.GET, "/api/roleMappings/**").hasAnyRole("MANAGER", "ADMIN")
 			.requestMatchers(HttpMethod.POST, "/api/roleMappings").hasAnyRole("MANAGER", "ADMIN")
 			.requestMatchers(HttpMethod.DELETE, "/api/roleMappings").hasRole("ADMIN")
